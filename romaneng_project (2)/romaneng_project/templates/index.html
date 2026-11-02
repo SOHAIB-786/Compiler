@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RomanEng Compiler</title>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<nav class="nav"><div class="container">
+  <a class="brand" href="#top"><span class="logo">RC</span> RomanEng</a>
+  <div class="menu"><a href="#grammar">Grammar</a><a href="#compiler">Compiler</a><a href="#phases">Phases</a><a href="#history">History</a></div>
+  <div class="user"><span class="avatar">{{ user[0] }}</span><span class="uname">{{ user }}</span>
+    <a class="btn outline sm" href="/logout">Log out</a></div>
+</div></nav>
+
+<header class="hero" id="top"><div class="container">
+  <div>
+    <h1>Write code in RomanEng.<br>Watch it compile.</h1>
+    <p>A compiler for our own language. Write a program, run it, and inspect each of the four compiler phases.</p>
+    <a class="btn light" href="#compiler">Start coding</a>
+    <a class="btn outline" href="#grammar" style="background:transparent;color:#fff;border-color:#ffffff88">View grammar</a>
+  </div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i></div>
+<pre><span class="t">adad</span> n <span class="o">rakho</span> 5
+<span class="k">agar</span> n <span class="o">se_zyada</span> 3 {
+    <span class="k">dikhao</span> <span class="s">"big number"</span>
+} <span class="k">warna</span> {
+    <span class="k">dikhao</span> <span class="s">"small number"</span>
+}</pre></div>
+</div></header>
+
+<main class="container">
+
+  <section class="card" id="grammar">
+    <div class="card-h"><div><h2>Language grammar</h2><p>Everything you can use when writing RomanEng (.rc) code.</p></div></div>
+    <div class="tabs" id="gtabs">
+      <button class="tab on" data-p="kw">Keywords</button><button class="tab" data-p="ty">Data types</button>
+      <button class="tab" data-p="op">Operators</button><button class="tab" data-p="bnf">Syntax rules</button>
+    </div>
+    <div class="pane on" id="p-kw"><div class="scroll" id="kw"></div></div>
+    <div class="pane" id="p-ty"><div class="scroll" id="ty"></div></div>
+    <div class="pane" id="p-op"><div class="scroll" id="op"></div></div>
+    <div class="pane" id="p-bnf"><pre class="bnf" id="bnf"></pre></div>
+  </section>
+
+  <section class="card" id="compiler">
+    <div class="card-h"><div><h2>Compiler</h2><p>Write your program, then press Run.</p></div>
+      <div class="actions">
+        <button class="btn outline sm" id="btnSample">Load sample</button>
+        <button class="btn outline sm" id="btnClear">Clear</button>
+        <button class="btn primary" id="btnRun">▶ Run</button>
+      </div></div>
+    <div class="workspace">
+      <div><div class="label"><span>Source code</span><span>.rc</span></div>
+        <div class="editor"><pre class="gutter" id="gutter">1</pre>
+          <textarea id="code" spellcheck="false" wrap="off"></textarea></div>
+        <p class="hintline">Tip: press Ctrl + Enter to run.</p></div>
+      <div><div class="label"><span>Input values</span></div>
+        <textarea class="side mono" id="inp" spellcheck="false" placeholder="One value per line, used by 'batao'"></textarea></div>
+    </div>
+    <div class="console" id="console">
+      <div class="console-h"><span>Output</span><span id="runBadge"></span></div>
+      <pre id="out"></pre><div class="fail" id="fail" style="display:none"></div>
+      <details id="pyd"><summary>View generated Python</summary><pre id="py"></pre></details>
+    </div>
+  </section>
+
+  <section class="card" id="phases">
+    <div class="card-h"><div><h2>Compiler phases</h2><p>Select a phase to see what it does and what it produced.</p></div>
+      <div class="seg" id="seg"><button data-m="dep" class="on">Dependent</button><button data-m="ind">Independent</button></div></div>
+    <p class="modedesc" id="modeDesc"></p>
+    <div id="runbar"></div>
+    <div class="stepper dep" id="stepper"></div>
+    <div class="panel" id="panel"></div>
+  </section>
+
+  <section class="card" id="history">
+    <div class="card-h"><div><h2>History</h2><p>Your previous programs, saved in SQL Server.</p></div>
+      <button class="btn danger sm" id="btnClearHist">Clear history</button></div>
+    <div id="hist"></div>
+  </section>
+</main>
+
+<footer>RomanEng (.rc) · Hassan Bin Zahid · Syed Mohammad Yousha Zaidi · Muhammad Sohaib</footer>
+<script src="/static/js/app.js"></script>
+</body></html>

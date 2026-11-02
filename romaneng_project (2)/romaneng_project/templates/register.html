@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Create account · RomanEng Compiler</title>
+<link rel="stylesheet" href="/static/css/style.css"></head>
+<body><div class="auth">
+<aside class="auth-side">
+  <a class="brand" href="/" style="color:#fff"><span class="logo">RC</span> RomanEng</a>
+  <div><h1>A compiler for our<br>own language.</h1><p>Write code with RomanEng keywords and inspect every compiler phase.</p>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i></div>
+<pre><span class="t">adad</span> x <span class="o">rakho</span> 10
+<span class="k">dikhao</span> x <span class="o">jama</span> 5</pre></div></div>
+  <span style="opacity:.7;font-size:13px">RomanEng (.rc)</span>
+</aside>
+<section class="auth-main"><form class="form" id="f">
+  <h2>Create your account</h2>
+  <p class="sub">It takes a few seconds.</p>
+  <label for="u">Username</label><input id="u" autocomplete="username" required autofocus minlength="3" maxlength="30">
+  <label for="p">Password</label><input id="p" type="password" autocomplete="new-password" required minlength="6">
+  <label for="c">Confirm password</label><input id="c" type="password" autocomplete="new-password" required>
+  <button class="btn primary" id="b">Create account</button>
+  <div class="ferr" id="e"></div>
+  <div class="alt">Already have an account? <a href="/login">Log in</a></div>
+</form></section></div>
+<script>
+const f=document.getElementById('f'),b=document.getElementById('b'),e=document.getElementById('e');
+f.onsubmit=async ev=>{ev.preventDefault();b.disabled=true;e.style.display='none';
+ try{const r=await fetch('/register',{method:'POST',headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({username:u.value,password:p.value,confirm:c.value})});
+  const d=await r.json();if(d.ok){location='/'}else{e.textContent=d.error||'Something went wrong';e.style.display='block';b.disabled=false}}
+ catch(x){e.textContent='Could not reach the server';e.style.display='block';b.disabled=false}};
+</script></body></html>
